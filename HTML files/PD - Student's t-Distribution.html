@@ -1,0 +1,847 @@
+<!doctype html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<!--<![endif]-->
+<html lang="en">
+<head>
+<title>AAanalytics - Student's t-Distribution</title> <!-- edit title -->
+<meta charset="utf-8">
+<!-- Meta --> <!-- edit meta -->
+<meta name="keywords" content="Student's t-Distribution, t-Distribution, t-Distribution pdf, t-Distribution mean, t-Distribution variance, mean, variance, pdf, t-Distribution Chi-Squared, t-Test, Chi-Squared t Distribuiton Relationship, t-Distribution t Test, Python, Python Demo, t-Distribution Python, t-Distribution Python Demo, t-distribution explanation, t-distribution explained, t-distribution intuition" />
+<meta name="author" content="Alexander Wright">
+<meta name="robots" content="" />
+<meta name="description" content="This page introduces the t-Distribution, provides its characteristics, gives an intuition/explanation about the distribution, and then provides a full demo exploring the distribution in Python" />
+
+<!-- this styles only adds some repairs on idevices  -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="../images/favicon.ico">
+
+<!-- Google fonts - witch you want to use - (rest you can just remove) -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<!-- stylesheets -->
+<link rel="stylesheet" media="screen" href="../js/bootstrap/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="../js/mainmenu/menu.css" type="text/css" />
+<link rel="stylesheet" href="../css/default.css" type="text/css" />
+<link rel="stylesheet" href="../css/layouts.css" type="text/css" />
+<link rel="stylesheet" href="../css/shortcodes.css" type="text/css" />
+<link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" media="screen" href="../css/responsive-leyouts.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../css/Simple-Line-Icons-Webfont/simple-line-icons.css" media="screen" />
+<link rel="stylesheet" href="../css/et-line-font/et-line-font.css">
+<link href="../js/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="../js/tabs/assets/css/responsive-tabs.css" />
+
+<!-- Remove the below comments to use your color option -->
+<!--<link rel="stylesheet" href="../css/colors/lightblue.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/orange.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/green.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/pink.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/red.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/purple.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/bridge.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/yellow.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/violet.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/cyan.css" />-->
+<!--<link rel="stylesheet" href="../css/colors/mossgreen.css" />-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
+
+<body>
+<div class="site_wrapper">
+  <div class="topbar white topbar-padding">
+    <div class="container">
+      <div class="topbar-left-items">
+        <ul class="toplist toppadding pull-left paddtop1">
+          <li>AAanalyticsuser@gmail.com</li>
+        </ul>
+      </div>
+      <!--end left-->
+      
+      <div class="topbar-right-items pull-right">
+        <ul class="toplist toppadding">
+          <li><a href="https://www.facebook.com/alex.wright.1000"><i class="fa fa-facebook"></i></a></li>
+          <li class="last"><a href="https://www.linkedin.com/in/alexanderwright22/"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  
+  <div id="header">
+    <div class="container">
+      <div class="navbar navbar-default yamm">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target="#navbar-collapse-grid" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <a href="../index.html" class="navbar-brand"><img src="../images/subhome_logo.png" alt=""/></a> </div>
+        <div id="navbar-collapse-grid" class="navbar-collapse collapse pull-right">
+          <ul class="nav navbar-nav"> <!-- edit upper nav bar -->
+            <li class="dropdown"> <a href="index.html" class="dropdown-toggle active">Learn Data Science</a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="index1.html">Introduction</a> </li>
+				<li><a href="index1.html">Parametric Distributions</a> </li>
+				<li><a href="index1.html">Statistical Tests</a> </li>
+                <li><a href="index2.html"> Exploratory Analysis/Data Visualization</a> </li>
+                <li><a href="index3.html"> Linear Regression/Logistic Regression</a> </li>
+                <li><a href="index4.html"> Overfitting and Regularization</a> </li>
+                <li><a href="index5.html"> Artificial Neural Networks</a> </li>
+                <li><a href="index6.html"> Kernel Methods</a> </li>
+                <li><a href="index7.html"> Decision Tree Learning</a> </li>
+                <li><a href="index8.html"> Support Vector Machines</a> </li>
+              </ul>
+            </li>
+            <li class="dropdown yamm-fw"><a href="Projects/index.html" class="dropdown-toggle">Projects</a>
+              <ul class="dropdown-menu">
+                <li class="grid-demo">
+                  <div class="row">
+                    <ul class="col-sm-6 col-md-4 list-unstyled ">
+                      <li>
+                        <p> Categories 1 </p>
+                      </li>
+                      <li><a href="http://codelayers.net/templates/hasta/gym/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Gym</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/hosting/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Hosting</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/hairsaloon/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Hairsaloon</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/restaurant/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Restaurant</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/agency/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Agency</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/grayscale/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Grayscale</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/mechanic/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Mechanic</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/shop/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Shop</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/blog1/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Blog</a> </li>
+                      <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp;Mobile App <span class="release-note">Release soon</span></a> </li>
+                    </ul>
+                    <ul class="col-sm-6 col-md-4 list-unstyled ">
+                      <li>
+                        <p> Categories 2 </p>
+                      </li>
+                      <li><a href="http://codelayers.net/templates/hasta/cafe/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Cafe</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/school/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; School</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/portfolio/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Portfolio</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/construction/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Construction</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/medical/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Medical</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/transport/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Transport</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/realestate/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Realestate</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/university/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; University</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/winery/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Winery</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/beauty/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Beauty</a> </li>
+                    </ul>
+                    <ul class="col-sm-6 col-md-4 list-unstyled ">
+                      <li><a href="http://codelayers.net/templates/hasta/charity/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Charity</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/blog2/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Blog Style 2</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/fashion/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Fashion</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/law/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Law</a> </li>
+                      <li>
+                        <div class="margin-top2"></div>
+                      </li>
+                      <li>
+                        <p> One Page Layouts </p>
+                      </li>
+                      <li><a href="http://codelayers.net/templates/hasta/creative/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Creative</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/cafe2/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Cafe</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/personal/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Personal</a> </li>
+                      <li><a href="http://codelayers.net/templates/hasta/wedding/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Wedding</a> </li>
+                      <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Left menu <span class="release-note">Release soon</span></a> </li>
+                      <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Right Menu <span class="release-note">Release soon</span></a> </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown yamm-fw"> <a href="Datasets/index.html" class="dropdown-toggle">Datasets</a>
+              <ul class="dropdown-menu">
+                <li> 
+                  <!-- Content container to add padding -->
+                  <div class="yamm-content">
+                    <div class="row">
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Pages 1 </p>
+                        </li>
+                        <li><a href="about.html"><i class="fa fa-angle-right"></i> &nbsp; About Style 1</a></li>
+                        <li><a href="about2.html"><i class="fa fa-angle-right"></i> &nbsp; About Style 2</a></li>
+                        <li><a href="about3.html"><i class="fa fa-angle-right"></i> &nbsp; About Style 3</a></li>
+                        <li><a href="about4.html"><i class="fa fa-angle-right"></i> &nbsp; About Me</a></li>
+                        <li><a href="team.html"><i class="fa fa-angle-right"></i> &nbsp; Team Member</a></li>
+                        <li><a class="active" href="left-nav.html"><i class="fa fa-angle-right"></i> &nbsp; Topics in Data Science</a></li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Pages 2 </p>
+                        </li>
+                        <li><a href="services.html"><i class="fa fa-angle-right"></i> &nbsp; Services Style 1</a></li>
+                        <li><a href="services2.html"><i class="fa fa-angle-right"></i> &nbsp; Services Style 2</a></li>
+                        <li><a href="services3.html"><i class="fa fa-angle-right"></i> &nbsp; Services Style 3</a></li>
+                        <li><a href="services4.html"><i class="fa fa-angle-right"></i> &nbsp; Services Style 4</a></li>
+                        <li><a href="faq.html"><i class="fa fa-angle-right"></i> &nbsp; FAQ Style 1</a></li>
+                        <li><a href="faq2.html"><i class="fa fa-angle-right"></i> &nbsp; FAQ Style 2</a></li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Pages 3 </p>
+                        </li>
+                        <li><a href="full-width.html"><i class="fa fa-angle-right"></i> &nbsp; Full Width Page</a></li>
+                        <li><a href="left-sidebar.html"><i class="fa fa-angle-right"></i> &nbsp; Left Sidebar Page</a></li>
+                        <li><a href="right-sidebar.html"><i class="fa fa-angle-right"></i> &nbsp; Right Sidebar Page</a></li>
+                        <li><a href="packages.html"><i class="fa fa-angle-right"></i> &nbsp; Package Plans</a></li>
+                        <li><a href="careers.html"><i class="fa fa-angle-right"></i> &nbsp; Careers</a></li>
+                        <li><a href="coming-soon.html"><i class="fa fa-angle-right"></i> &nbsp; Coming Soon</a></li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Pages 4 </p>
+                        </li>
+                        <li><a href="login.html"><i class="fa fa-angle-right"></i> &nbsp; Login Form</a></li>
+                        <li><a href="register.html"><i class="fa fa-angle-right"></i> &nbsp; Registration Form</a></li>
+                        <li><a href="sitemap.html"><i class="fa fa-angle-right"></i> &nbsp; Sitemap</a></li>
+                        <li><a href="maintenance.html"><i class="fa fa-angle-right"></i> &nbsp; Maintenance</a></li>
+                        <li><a href="404.html"><i class="fa fa-angle-right"></i> &nbsp; 404 Error Page</a></li>
+                        <li><a href="404-2.html"><i class="fa fa-angle-right"></i> &nbsp; 404 Error Page2</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown yamm-fw"> <a href="Python Demos/index.html" class="dropdown-toggle">Python Demos</a>
+              <ul class="dropdown-menu">
+                <li> 
+                  <!-- Content container to add padding -->
+                  <div class="yamm-content">
+                    <div class="row">
+                      <ul class="col-sm-6 col-md-4 list-unstyled ">
+                        <li>
+                          <p> Header Styles </p>
+                        </li>
+                        <li><a href="index1.html"><i class="fa fa-angle-right"></i> &nbsp; Header Style 1</a></li>
+                        <li><a href="index2.html"><i class="fa fa-angle-right"></i> &nbsp; Header Style 2</a></li>
+                        <li><a href="index3.html"><i class="fa fa-angle-right"></i> &nbsp; Header Style 3</a></li>
+                        <li><a href="index4.html"><i class="fa fa-angle-right"></i> &nbsp; Header Style 4</a></li>
+                        <li><a href="index5.html"><i class="fa fa-angle-right"></i> &nbsp; Header Style 5</a></li>
+                        <li class="marginbottom"><a href="index6.html"><i class="fa fa-angle-right"></i> &nbsp; Header Style 6</a></li>
+                        <li>
+                          <p> Menu Styles </p>
+                        </li>
+                        <li><a href="index1.html"><i class="fa fa-angle-right"></i> &nbsp; Menu Style 1</a></li>
+                        <li><a href="index2.html"><i class="fa fa-angle-right"></i> &nbsp; Menu Style 2</a></li>
+                        <li><a href="index3.html"><i class="fa fa-angle-right"></i> &nbsp; Menu Style 3</a></li>
+                        <li><a href="index4.html"><i class="fa fa-angle-right"></i> &nbsp; Menu Style 4</a></li>
+                        <li><a href="index5.html"><i class="fa fa-angle-right"></i> &nbsp; Menu Style 5</a></li>
+                        <li><a href="index6.html"><i class="fa fa-angle-right"></i> &nbsp; Menu Style 6</a></li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-4 list-unstyled ">
+                        <li>
+                          <p> Home Page Styles </p>
+                        </li>
+                        <li><a href="index1.html"><i class="fa fa-angle-right"></i> &nbsp; Light Versions</a></li>
+                        <li><a href="http://codelayers.net/templates/hasta/transport/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Dark Versions</a></li>
+                        <li><a href="http://codelayers.net/templates/hasta/cafe/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Classic Versions</a></li>
+                        <li><a href="http://codelayers.net/templates/hasta/grayscale/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; grayscale Version</a></li>
+                        <li><a href="http://codelayers.net/templates/hasta/portfolio/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Portfolio Versions</a></li>
+                        <li class="marginbottom"><a href="http://codelayers.net/templates/hasta/gym/fullwidth/index.html" target="_blank"><i class="fa fa-angle-right"></i> &nbsp; Categories</a></li>
+                        <li>
+                          <p> Footer Styles </p>
+                        </li>
+                        <li><a href="index1.html"><i class="fa fa-angle-right"></i> &nbsp; Light Versions</a></li>
+                        <li><a href="index2.html"><i class="fa fa-angle-right"></i> &nbsp; Dark Versions</a></li>
+                        <li><a href="index3.html"><i class="fa fa-angle-right"></i> &nbsp; Classic Versions</a></li>
+                        <li><a href="index4.html"><i class="fa fa-angle-right"></i> &nbsp; grayscale Version</a></li>
+                        <li><a href="index5.html"><i class="fa fa-angle-right"></i> &nbsp; Portfolio Versions</a></li>
+                        <li><a href="index6.html"><i class="fa fa-angle-right"></i> &nbsp; Categories</a></li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-4 list-unstyled ">
+                        <li>
+                          <p> Other Features </p>
+                        </li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Premium Sliders</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Video Backgrounds</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Video Sliders</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Color Options</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Boxed Versions</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Onepage Layouts</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Carousel</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Coming Soon Pages</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Many more Sections</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Contact Pages</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; HTML5 Videos</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Layered PSD Files</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Beautiful Animations</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i> &nbsp; Excellent Support</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown"> <a href="SQL Demos/index.html" class="dropdown-toggle">SQL Demos</a>
+              <ul class="dropdown-menu" role="menu">
+                <li> <a href="portfolio-one.html">Single Item</a> </li>
+                <li> <a href="portfolio-two.html">Portfolio Columns 2</a> </li>
+                <li> <a href="portfolio-three.html">Portfolio Columns 3</a> </li>
+                <li> <a href="portfolio-four.html">Portfolio Columns 4</a> </li>
+                <li> <a href="portfolio-five.html">Portfolio + Sidebar</a> </li>
+                <li> <a href="portfolio-six.html">Portfolio Full Width</a> </li>
+                <li> <a href="portfolio-seven.html">Portfolio Masonry</a> </li>
+                <li> <a href="portfolio-eight.html">Masonry Projects</a> </li>
+                <li> <a href="portfolio-nine.html">Slider Projects</a> </li>
+                <li class="dropdown-submenu mul"> <a tabindex="-1" href="#">Sub Menu + </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Menu Item 1</a></li>
+                    <li><a href="#">Menu Item 2</a></li>
+                    <li><a href="#">Menu Item 3</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown yamm-fw"> <a href="Links and Resources/index.html" class="dropdown-toggle">Links and Resources</a>
+              <ul class="dropdown-menu">
+                <li> 
+                  <!-- Content container to add padding -->
+                  <div class="yamm-content">
+                    <div class="row">
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Shortcodes 1 </p>
+                        </li>
+                        <li><a href="accordions.html"><i class="fa fa-plus-circle"></i> &nbsp; Accordions</a> </li>
+                        <li><a href="image-hover.html"><i class="fa fa-picture-o"></i> &nbsp; Image Hovers</a> </li>
+                        <li><a href="buttons.html"><i class="fa fa-bars"></i> &nbsp; Button Styles</a> </li>
+                        <li><a href="call-to-action.html"><i class="fa fa-external-link-square"></i> &nbsp; Call to Action</a> </li>
+                        <li><a href="carousel-sliders.html"><i class="fa fa-eye"></i> &nbsp; Carousel Sliders</a> </li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Shortcodes 2 </p>
+                        </li>
+                        <li><a href="columns.html"><i class="fa fa-leaf"></i> &nbsp; Columns</a> </li>
+                        <li><a href="lists.html"><i class="fa fa-list"></i> &nbsp; lists Styles</a> </li>
+                        <li><a href="message-boxes.html"><i class="fa fa-tags"></i> &nbsp; Message Boxes</a> </li>
+                        <li><a href="parallax-backgrounds.html"><i class="fa fa-cloud"></i> &nbsp; Parallax Backgrounds</a> </li>
+                        <li><a href="pricing-tables.html"><i class="fa fa-rocket"></i> &nbsp; Pricing Tables</a> </li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Shortcodes 3 </p>
+                        </li>
+                        <li><a href="tabs.html"><i class="fa fa-qrcode"></i> &nbsp; Tabs</a> </li>
+                        <li><a href="typography.html"><i class="fa fa-font"></i> &nbsp; Typography</a> </li>
+                        <li><a href="content-boxes.html"><i class="fa fa-flag"></i> &nbsp; Content Boxes</a> </li>
+                        <li><a href="data-tables.html"><i class="fa fa-table"></i> &nbsp; Data Tables</a> </li>
+                        <li><a href="social-icons.html"><i class="fa fa-twitter"></i> &nbsp; Social Icons</a> </li>
+                      </ul>
+                      <ul class="col-sm-6 col-md-3 list-unstyled ">
+                        <li>
+                          <p> Shortcodes 4 </p>
+                        </li>
+                        <li><a href="icon-boxes.html"><i class="fa fa-pencil-square"></i> &nbsp; Icon Boxes</a> </li>
+                        <li><a href="team-member.html"><i class="fa fa-user"></i> &nbsp; Team member</a> </li>
+                        <li><a href="latest-posts.html"><i class="fa fa-thumbs-up"></i> &nbsp; Latest Posts</a> </li>
+                        <li><a href="dividers.html"><i class="fa fa-file-text"></i> &nbsp; Dividers</a> </li>
+                        <li><a href="widgets.html"><i class="fa fa-external-link"></i> &nbsp; Widget Styles</a> </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown"> <a href="About Me/index.html" class="dropdown-toggle">About Me</a>
+              <ul class="dropdown-menu two" role="menu">
+                <li> <a href="contact.html">Contact Variation 1</a> </li>
+                <li> <a href="contact2.html">Contact Variation 2</a> </li>
+                <li> <a href="contact3.html">Contact Variation 3</a> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end menu-->
+  <div class="clearfix"></div>
+  
+  <section>
+    <div class="header-inner two">
+      <div class="inner text-center">
+        <h4 class="title text-white uppercase">Topics in Data Science</h4> <!-- edit horizon pic text -->
+        <h5 class="text-white uppercase"> Curriculum</h5>
+      </div>
+      <div class="overlay bg-opacity-5"></div>
+      <img src="../images/heatmap.png" alt="" class="img-responsive"/> </div> <!-- edit horizon pic -->
+  </section>
+  <!-- end header inner -->
+  <div class="clearfix"></div>
+  
+  <section>
+    <div class="pagenation-holder">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Parametric Distributions</h3> <!-- edit subsection title -->
+          </div>
+          <div class="col-md-6 text-right">
+            <div class="pagenation_links"><a href="../index.html">Home</a><i> / </i>Learn Data Science<i> / </i>Parametric Distributions </div> <!-- edit page path -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--end section-->
+  <div class="clearfix"></div>
+  
+  
+  <section class="sec-padding">
+  <div class="container">
+  <div class="row">
+  
+  <div class="col-md-3 col-sm-12 col-xs-12 bmargin"> <!-- edit left nav bar -->
+  <h5 class="padd_bot2">Categories</h5>
+           <div class="accordion_holder">
+			  <div class="accordion_example1"> 
+				
+				<!-- Section 1 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Introduction</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">-Performance Bounds</a> </li>
+					<li> <a href="index.html">-Theory</a> </li>
+					<li> <a href="index.html">-Linear Algebra</a> </li>
+					<li> <a href="index.html">-Statistical Tests</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				
+				<!-- Section 1.5 -->
+				<div class="accordion_in acc_active">
+				  <div class="acc_head">Parametric Distributions</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+				    <li> <a href="index.html">-Bernoulli</a> </li>
+					<li> <a href="index.html">-Beta</a> </li>
+					<li> <a href="index.html">-Binomial</a> </li>
+					<li> <a href="index.html">-Cauchy</a> </li>
+					<li> <a href="index.html">-Chi-Squared</a> </li>
+					<li> <a href="index.html">-Exponential</a> </li>
+					<li> <a href="index.html">-F-Distribution</a> </li>
+					<li> <a href="index.html">-Gamma</a> </li>
+					<li> <a href="index.html">-Logistic</a> </li>
+					<li> <a href="index.html">-Log-Normal</a> </li>
+					<li> <a href="index.html">-Logit-Normal</a> </li>
+					<li> <a href="index.html">-Multi-Variate Normal</a> </li>
+					<li> <a href="index.html">-Negative Exponential</a> </li>
+					<li> <a href="index.html">-Normal </a> </li>
+					<li> <a href="index.html">-Pareto</a> </li>
+					<li> <a href="index.html">-Poisson</a> </li>
+					<li> <a href="index.html">-Student's <i>t</i>-distribution</a> </li>
+					<li> <a href="index.html">-Weibull</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 1.5.1 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Statistical Tests</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">-Student's $t$-test</a> </li>
+					<li> <a href="index.html">-$F$-Test</a> </li>
+					<li> <a href="index.html">-Pearson's $\chi^2$ test</a> </li>
+					<li> <a href="index.html">-Statistical Tests</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 2 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Data Visualization/Descriptive Statistics	</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 3 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Linear Regression/Logistic Regression</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 4 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Overfitting and Regularization</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 5 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Artificial Neural Networks</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 6 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Kernel Methods</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 7 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Decision Tree Learning</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+				
+				<!-- Section 3 -->
+				<div class="accordion_in">
+				  <div class="acc_head">Support Vector Machines</div>
+				  <div class="acc_content"> 
+				  <ul class="left-nav sub-links">
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+					<li> <a href="index.html">Pages</a> </li>
+				  </ul>
+				  
+				  </div>
+				</div>
+          </div>
+		 </div>
+  </div>
+  
+  <!--end left column-->
+  
+  
+  
+  <div class="col-md-9 col-sm-12 col-xs-12 bmargin">
+  <img src="../images/Exponentials.png" alt="" class="img-responsive"/>
+  <br/>
+  <h2>Student's $t$-Distribution</h2> <!-- edit body title -->
+  
+  </br>
+  
+  <div class="col-md-12">
+  <div class="text-box border padding-2"> <!-- edit body top box -->
+  
+  
+  $$ \begin{align} \text{Parameters:} \quad k > 0 \quad \text{type: degrees of freedom} \end{align} \\ $$
+										
+  $$ \begin{align} \text{Support: }x \in (-\infty,+\infty) \end{align} \\~\\ $$
+  
+  $$ \begin{align} \text{pdf: } f_X(x;k) & = \frac{\Gamma \left ( \frac{k+1}{2} \right )}{\sqrt{k\pi} \; \Gamma(k/2)} \left ( 1 + \frac{x^2}{k} \right )^{-\frac{v+1}{2}} \\~\\~\\ \end{align}$$
+
+  $$ \begin{align} \text{cdf: } \frac{1}{2} + x\Gamma \left ( \frac{k+1}{2} \right ) \times \frac{_2F_1 \left (\frac{1}{2}, \frac{k+1}{2}; \frac{3}{2}; -\frac{x^2}{k} \right )}{\sqrt{k \pi} \Gamma (k/2)} \\ \\
+					\text{where } _2F_1 \text{ is the hypergeometric function} \end{align} \\[1in]  $$
+
+  $$ \\ \text{Mean: } E[X] = 0 \quad \text{for } k>1 \\ $$
+  
+  $$ \begin{align} \text{Variance: } Var[X] = &\frac{k}{k-2} \quad \text{for } k>2 \\~\\
+											  & \infty \text{ for } 1 <  k \leq 2 \end{align} \\ $$
+  
+  </div>
+  </div>
+  
+  
+  <!-- edit main body -->
+  
+  <p>The ratio of a standard normal random variable $Z$ over the square-root of a chi-squared random variable $\chi_k^2$ (scaled by the inverse of its degrees of freedom $k$) inevitably follows a Student's $t$-distribution with $k$ degrees of freedom </p>
+  
+	$$ \begin{align} \text{let } \quad &X_1 \sim N(x; 0,1) \sim Z, \\ &X_2 \sim \chi^2(x; k) \\ \\
+       \text{then }& \quad Y = \frac{X_1}{\sqrt{X_2/k}} \sim t(x;k) \end{align} $$
+      
+  <p>Due to the fact that the $t$-distribution provides a model for the distribution of sample means as a function only dependent on sample size $n$ (referred to as $k = n-1$ degrees of freedom) 
+    -- importantly independent from the population mean and population variance -- the $t$-distribution is used in a number of ways in statistics. </p>
+	
+	<p>In accordance with the Central Limit Theorem, given a sufficient sample size, the distribution of sample means follows a Normal distribution.  
+	Thus, if the population mean is known and the standard deviation is known or estimable, then we can utilize the Z-score test to determine the probability of whether 
+	or not the new sample ‘came from’ or ‘belongs to’ the parent population. </p>
+	
+  <p>We do this by calculating a Z-score $z_X$ for the sample mean</p> 
+  
+  $$ z_X = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}$$
+
+  <p> where $\bar{X}$ = sample mean, $\mu$ = population mean, $\sigma$ = population standard deviation, and $n$ = sample size; denominator = [sample standard deviation]). 
+      The $z$-score can be interpreted as the distance (in units of standard deviation of the sample) between the population mean and the sample mean.  Since the CLT tells us
+	  that the random variable $\frac{\bar{X} - \mu}{\sigma / \sqrt{n}}$ follows a standard normal distribution, then once we have calculated our $z$-score,
+	  we can easily reverse-compute insightful probabilites and confidence interverals regarding the relationship between the sample and population mean.
+	  Intuitively, the further the sample mean is from the population mean the lower the probability that the sample ‘came from’ the underlying population distribution. 
+	  The greater the sample size $\rightarrow$ the smaller the standard deviation term $\rightarrow$ the greater the magnitude of the Z-score $\rightarrow$ 
+	  the smaller the probability of obtaining that sample mean from the parent population. </p>
+	  
+  <p> However, the Z-score can only be utilized when the either sample size is sufficiently large or the population standard deviation is known.  If neither of these conditions are true, 
+      then the Z-score does not provide a reliable account of the probabilistic relationship between the sample mean and the population mean. 
+	  In such a case we turn to the Student’s t-test, which is another method of comparing a sample mean to the population mean that does not depend on population variance. </p>
+	
+  <p>Whereas the random variable defined by </p>
+	
+	$$A = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}$$
+	
+  <p>Follows a standard normal distribution in virtue of the CLT, the random variable</p>
+  
+    $$B = \frac{\bar{X} - \mu}{s_n / \sqrt{n}}$$
+	
+  <p>Inevitably follows a $t$-distribution with $n-1$ degrees of freedom.  Notice that the population standard deviation $\sigma$
+  has been replaced with sample standard deviation $s_n$.  To see why this random variable follows a $t$-distribution, recall the characterization of the $t$-distribution
+  as the ratio of a standard normal rv over the square-root of a chi-squared rv, scaled by the inverse of its degrees of freedom $k$: </p>
+
+   $$ Y = \frac{Z}{\sqrt{\chi_k^2/k}} \sim t(x;k) $$
+
+   <p> Also recall that the following random variable follows a $\chi^2$ distribution with $n-1$ degrees of freedom :</p>
+	
+    $$  C = (n-1) \frac{s_n^2}{\sigma^2} \sim \chi^2(x;k=(n-1)) $$
+  
+  <p>Where $n$ is the sample size, $s_n^2$ is the sample variance, and $\sigma^2$ is the population variance.  Then, by making the appropriate substitutions,
+    we can easily see that substituting sample standard deviation $s_n$ in place of population standard deviation $\sigma$ does indeed result in a $t$-distribution:</p>
+  
+    $$  \begin{align} A &= \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0,1) \\ \\
+					  C &= (n-1) \frac{s_n^2}{\sigma^2} \sim \chi^2(x;k=n-1)  \\ \\
+					 \text{then} \quad Y &= \frac{A}{\sqrt{C/k}}\\ \\
+										&= \frac{ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} }{ \sqrt{\frac{(n-1) \frac{s_n^2}{\sigma^2}}{(n-1)}}  } \\~\\
+										&= \frac{ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} }{s_n/\sigma} \\~\\
+										&= \frac{ \bar{X} - \mu}{s_n/\sqrt{n}} \sim t(x;k=n-1)
+
+					 \end{align}$$
+  
+	<p>  </p>
+  
+  <p> It is this formulation of the $t$-distribution that is crucial to statistics because it provides a theoretical reference-point through which
+  we can compare any given sample mean to a pre-determined population mean.  The $t$-statistic is calculated by $$t_X =  \frac{ \bar{X} - \mu}{s_n/\sqrt{n}} $$
+  What is the probability of obtaining any given value of $t_X$?  The $t$-distribution with $n-1$ degrees of freedom provides answers to the following questions:
+  </p>
+  
+	  
+  <div class="col-md-12 bmargin">
+        <div class="list-style-2">
+          <div class="icon"><i class="fa fa-angle-right"></i></div>
+          <div class="text"> What is the probability of obtaining any given value of $t_X$?</div>
+        </div>
+        <!--end item-->
+        
+		<div class="list-style-2">
+          <div class="icon"><i class="fa fa-angle-right"></i></div>
+          <div class="text">For what values of $t_X$ can I be greater than 95% certain that the sample differs from the population?</div>
+        </div>
+        <!--end item-->
+        
+        
+		
+		</div>
+		
+		<br>
+		<br>
+   
+	  
+	  
+	  
+	  </div>
+	  
+  
+	
+	<br>
+	 </div>
+	  
+	 <div class="col-md-12">
+      <div class="sh-divider-line doubble red margin" width="100%"></div>
+	  </br>
+     </div>
+	 
+	 <!-- edit nbviewer -->
+   <iframe src="http://nbviewer.jupyter.org/github/awright13/aaanalytics/blob/Learn-Data-Science/Exponential.ipynb" width="100%" height="800" align ="right" scrolling="yes"></iframe>
+   
+   
+   
+   
+  </div>
+  <!--end right column-->
+  
+  
+  
+
+  </div>
+  </div>
+  </section>
+  <!-- end section -->
+  <div class="clearfix"></div>
+  
+  
+  <section class="section-dark sec-padding"> <!-- edit footer -->
+    <div class="container"> 
+      <div class="row">
+        <div class="col-md-3 col-sm-6 colmargin">
+          <div class="footer-logo"><img src="images/footer-logo.png" alt=""/></div>
+          <ul class="address-info">
+            <li>Address: No.28 - 63739 street lorem ipsum City, Country</li>
+            <li><i class="fa fa-home"></i> Phone: + 1 (234) 567 8901</li>
+             <li><i class="fa fa-phone"></i> Phone: + 1 (234) 567 8901</li>
+            <li><i class="fa fa-fax"></i> Fax: + 1 (234) 567 8901</li>
+            <li class="last"><i class="fa fa-envelope"></i> Email: support@yoursite.com </li>
+          </ul>
+        </div>
+        <!--end item-->
+        
+        <div class="col-md-3 col-sm-6 colmargin">
+          <h4 class="uppercase footer-title less-mar3">Recent Posts</h4>
+          <div class="footer-title-bottomstrip"></div>
+          <div class="image-left">
+            <div class="fo-postimg-inner overflow-hidden"><img src="http://placehold.it/80x80" alt=""/></div>
+          </div>
+          <div class="text-box-right">
+            <h5 class="text-white less-mar3"><a href="#">Clean And Modern</a></h5>
+            <span>Lorem ipsum dolor sit</span>
+            <div class="footer-post-info"> <span>By John Doe</span><span>May 15</span> </div>
+          </div>
+          <div class="divider-line solid dark margin"></div>
+          <div class="image-left">
+            <div class="fo-postimg-inner overflow-hidden"><img src="http://placehold.it/80x80" alt=""/></div>
+          </div>
+          <div class="text-box-right">
+            <h5 class="text-white less-mar3"><a href="#">Clean And Modern</a></h5>
+            <span>Lorem ipsum dolor sit</span>
+            <div class="footer-post-info"> <span>By John Doe</span><span>May 15</span> </div>
+          </div>
+        </div>
+        <!--end item-->
+        
+        <div class="col-md-3 col-sm-6 colmargin clearfix">
+          <h4 class="uppercase footer-title less-mar3">Tags</h4>
+          <div class="footer-title-bottomstrip"></div>
+          <ul class="footer-tags">
+            <li><a href="#">Animation</a></li>
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Photography</a></li>
+            <li><a class="active" href="#">Design</a></li>
+            <li><a href="#">Responsive</a></li>
+            <li><a href="#">Develop</a></li>
+            <li><a href="#">Branding</a></li>
+            <li><a href="#">Clean</a></li>
+          </ul>
+        </div>
+        <!--end item-->
+        
+        <div class="col-md-3 col-sm-6 colmargin tex-left">
+          <h4 class="uppercase footer-title less-mar3">useful links</h4>
+          <div class="footer-title-bottomstrip"></div>
+          <div class="clearfix"></div>
+          <ul class="usefull-links tex-left">
+            <li><a href="#"><i class="fa fa-angle-right"></i> Placerat bibendum</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i> Ullamcorper odio nec turpis</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i> Aliquam porttitor vestibulum ipsum</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i> Lobortis enim nec nisi</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i> Placerat bibendum</a></li>
+          </ul>
+        </div>
+        <!--end item--> 
+        
+      </div>
+    </div>
+  </section>
+  <!--end section-->
+  <div class="clearfix"></div>
+  
+  <section class="section-copyrights section-less-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="social-icons-3">
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a class="active" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a href="#"><i class="fa fa-wordpress"></i></a></li>
+            <li><a href="#"><i class="fa fa-android"></i></a></li>
+          </ul>
+          <div class="clearfix"></div>
+          <br/>
+          <span>Copyright © 2015 l yourdomain.com. All rights reserved.</span></div>
+      </div>
+    </div>
+  </section>
+  <!--end section-->
+  
+  <div class="clearfix"></div>
+  <a href="#" class="scrollup"></a><!-- end scroll to top of the page--> 
+  
+</div>
+<!--end sitewraper--> 
+
+ 
+
+<!-- ========== Js Files ========== -->
+ 
+<script type="text/javascript" src="../js/universal/jquery.js"></script> 
+<script src="../js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+<script src="../js/mainmenu/customeUI.js"></script> 
+<script src="../js/mainmenu/jquery.sticky.js"></script> 
+<script src="../js/scrolltotop/totop.js"></script> 
+<script src="../js/owl-carousel/owl.carousel.js"></script>
+<script src="../js/owl-carousel/custom.js"></script> 
+<script type="text/javascript" src="../js/tabs/smk-accordion.js"></script>
+<script type="text/javascript" src="../js/tabs/custom.js"></script> 
+<script src="../js/scripts/functions.js" type="text/javascript"></script>
+
+
+</body>
+</html>
